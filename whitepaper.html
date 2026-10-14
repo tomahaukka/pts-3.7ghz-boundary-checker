@@ -1,1 +1,343 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Radiometric Whitepaper</title></head><body><h1>Analyzing 3.7 GHz vs 26 GHz Private 5G</h1><p>Radiometric Analytics Research Group</p></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Radiometric Whitepaper - Analyzing 3.7 GHz vs 26 GHz Private 5G</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 20mm 18mm 20mm 18mm;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-size: 10.5pt;
+            line-height: 1.6;
+            color: #2d3748;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header-banner {
+            border-bottom: 3px solid #0f172a;
+            padding-bottom: 12px;
+            margin-bottom: 24px;
+        }
+
+        .doc-category {
+            font-size: 9pt;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: #2563eb;
+            margin-bottom: 4px;
+        }
+
+        h1 {
+            font-size: 18pt;
+            line-height: 1.25;
+            color: #0f172a;
+            margin: 0 0 12px 0;
+            font-weight: 700;
+        }
+
+        .meta-grid {
+            display: table;
+            width: 100%;
+            margin-top: 12px;
+            padding-top: 10px;
+            border-top: 1px solid #e2e8f0;
+            font-size: 9pt;
+            color: #4a5568;
+        }
+
+        .meta-row {
+            display: table-row;
+        }
+
+        .meta-cell {
+            display: table-cell;
+            padding-right: 20px;
+            padding-bottom: 4px;
+        }
+
+        .meta-cell strong {
+            color: #1a202c;
+        }
+
+        h2 {
+            font-size: 13pt;
+            color: #0f172a;
+            border-bottom: 1px solid #cbd5e1;
+            padding-bottom: 4px;
+            margin-top: 22px;
+            margin-bottom: 10px;
+            page-break-after: avoid;
+        }
+
+        h3 {
+            font-size: 11pt;
+            color: #1e293b;
+            margin-top: 14px;
+            margin-bottom: 6px;
+            page-break-after: avoid;
+        }
+
+        p {
+            margin-top: 0;
+            margin-bottom: 10px;
+            text-align: justify;
+        }
+
+        .executive-summary {
+            background-color: #f8fafc;
+            border-left: 4px solid #2563eb;
+            padding: 12px 16px;
+            margin-bottom: 20px;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .executive-summary h2 {
+            margin-top: 0;
+            border-bottom: none;
+            padding-bottom: 0;
+            color: #1e3a8a;
+        }
+
+        .insight-box {
+            background-color: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-left: 4px solid #3b82f6;
+            padding: 10px 14px;
+            margin: 14px 0;
+            font-size: 10pt;
+            border-radius: 2px;
+            page-break-inside: avoid;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 14px 0;
+            font-size: 9.5pt;
+            page-break-inside: avoid;
+        }
+
+        th {
+            background-color: #0f172a;
+            color: #ffffff;
+            text-align: left;
+            padding: 7px 10px;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 7px 10px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        tr:nth-child(even) td {
+            background-color: #f8fafc;
+        }
+
+        .equation-box {
+            background-color: #f1f5f9;
+            border: 1px solid #cbd5e1;
+            padding: 8px 12px;
+            text-align: center;
+            font-family: "Courier New", Courier, monospace;
+            font-weight: bold;
+            margin: 12px 0;
+            border-radius: 4px;
+            page-break-inside: avoid;
+        }
+
+        pre {
+            background-color: #0f172a;
+            color: #f8fafc;
+            padding: 12px;
+            border-radius: 4px;
+            font-family: "Consolas", "Courier New", monospace;
+            font-size: 8.5pt;
+            line-height: 1.45;
+            overflow-x: auto;
+            margin: 12px 0;
+            page-break-inside: avoid;
+        }
+
+        code {
+            font-family: "Consolas", "Courier New", monospace;
+            background-color: #f1f5f9;
+            color: #0f172a;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-size: 9pt;
+        }
+
+        pre code {
+            background-color: transparent;
+            color: inherit;
+            padding: 0;
+        }
+
+        ul, ol {
+            margin-top: 0;
+            margin-bottom: 10px;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 4px;
+        }
+
+        .doc-footer {
+            margin-top: 30px;
+            padding-top: 12px;
+            border-top: 1px solid #cbd5e1;
+            font-size: 8.5pt;
+            color: #64748b;
+            text-align: center;
+        }
+
+        a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-banner">
+        <div class="doc-category">Technical Whitepaper | Private 5G Architecture</div>
+        <h1>Analyzing 3.7 GHz vs. 26 GHz Private 5G RF Propagation and Coexistence Challenges in Nordic Industrial Topographies</h1>
+        
+        <div class="meta-grid">
+            <div class="meta-row">
+                <div class="meta-cell"><strong>Author:</strong> Radiometric Analytics Research Group</div>
+                <div class="meta-cell"><strong>Topic:</strong> Spectrum Intelligence</div>
+                <div class="meta-cell"><strong>Date:</strong> October 2026</div>
+            </div>
+            <div class="meta-row">
+                <div class="meta-cell" colspan="3"><strong>Reference Codebase:</strong> <a href="https://github.com/tomahaukka/pts-3.7ghz-boundary-checker">github.com/tomahaukka/pts-3.7ghz-boundary-checker</a></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="executive-summary">
+        <h2>Executive Summary</h2>
+        <p>As Nordic industrial enterprises accelerate their transition from legacy Wi-Fi and wired Ethernet to local Private 5G Non-Public Networks (NPN), enterprise system integrators face a major engineering hurdle: transitioning from IP-layer architecture to high-precision Physical Layer (RF) propagation and regulatory compliance.</p>
+        <p>While modern 3GPP Standalone (SA) architectures simplify core deployment, radio frequency (RF) design in industrial environments remains heavily constrained by physical topology and regulatory coexistence rules enforced by <strong>Post- och telestyrelsen (PTS)</strong> in Sweden. This whitepaper analyzes the RF propagation characteristics of the <strong>3.7 GHz (n77/n78)</strong> mid-band versus the <strong>26 GHz (n257/n258)</strong> mmWave spectrum allocations, outlining an automated workflow for evaluating boundary interference limits in the <strong>SWEREF 99 TM</strong> coordinate system.</p>
+    </div>
+
+    <h2>1. Regulatory Context: PTS Sweden Spectrum Allocations</h2>
+    <p>PTS provides distinct licensing frameworks for local private 5G deployments in Sweden, each targeting different industrial use cases and propagation mechanics.</p>
+
+    <h3>1.1 The 3.7–3.8 GHz Band (Mid-Band)</h3>
+    <ul>
+        <li><strong>Band Class:</strong> 3GPP n77 / n78 (Up to 80 MHz local licenses)</li>
+        <li><strong>Primary Use Case:</strong> Wide-area industrial yards, indoor logistics, AGV/AMR fleet automation, and mobile machine-to-machine (M2M) connectivity.</li>
+        <li><strong>Coexistence Challenges:</strong> Strict Out-of-Band (OOB) and co-channel Power Flux Density (PFD) / Received Signal Received Power (RSRP) limits at property boundaries to protect adjacent operators.</li>
+    </ul>
+
+    <h3>1.2 The 24.25–25.25 GHz Band (mmWave)</h3>
+    <ul>
+        <li><strong>Band Class:</strong> 3GPP n257 / n258 (Up to 400 MHz channel allocation)</li>
+        <li><strong>Primary Use Case:</strong> Ultra-high throughput links (e.g., multi-camera 4K machine vision inspection, real-time telemetry, dense sensor arrays).</li>
+        <li><strong>Coexistence Challenges:</strong> Near-line-of-sight (NLOS) blockage, extreme atmospheric and structural attenuation, requiring high-density small cell deployments.</li>
+    </ul>
+
+    <h2>2. RF Propagation & Attenuation Physics</h2>
+    <h3>2.1 Path Loss Comparison: Mid-Band vs. mmWave</h3>
+    <p>In free space, path loss follows the Free Space Path Loss (FSPL) equation derived from Friis' transmission formula:</p>
+
+    <div class="equation-box">
+        FSPL (dB) = 20 · log10(d) + 20 · log10(f) - 27.55
+    </div>
+
+    <p>Comparing 3,750 MHz (Mid-band) and 26,000 MHz (mmWave) over a 100-meter Line-of-Sight (LOS) distance:</p>
+    <ul>
+        <li><strong>3.75 GHz FSPL at 100m:</strong> 20·log10(100) + 20·log10(3750) - 27.55 ≈ <strong>83.93 dB</strong></li>
+        <li><strong>26.00 GHz FSPL at 100m:</strong> 20·log10(100) + 20·log10(26000) - 27.55 ≈ <strong>100.75 dB</strong></li>
+    </ul>
+
+    <div class="insight-box">
+        <strong>Key Insight:</strong> At 100 meters, a 26 GHz mmWave signal experiences an additional <strong>16.8 dB</strong> of free-space path loss compared to 3.7 GHz, requiring significantly higher Equivalent Isotropically Radiated Power (EIRP) or massive MIMO beamforming gain to maintain link budget parity.
+    </div>
+
+    <h3>2.2 Structural & Material Penetration Loss</h3>
+    <p>Industrial topographies present complex attenuation vectors. In indoor-to-outdoor scenarios, external wall construction dominates boundary propagation:</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Material Type</th>
+                <th>Attenuation @ 3.7 GHz (dB)</th>
+                <th>Attenuation @ 26 GHz (dB)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Standard Double Glazing</td>
+                <td>2 – 4 dB</td>
+                <td>8 – 15 dB</td>
+            </tr>
+            <tr>
+                <td>Energy-Efficient (IR-coated) Glass</td>
+                <td>18 – 28 dB</td>
+                <td>30 – 45+ dB</td>
+            </tr>
+            <tr>
+                <td>Reinforced Concrete (20cm)</td>
+                <td>20 – 35 dB</td>
+                <td>> 50 dB (Complete Block)</td>
+            </tr>
+            <tr>
+                <td>Profiled Metal Cladding / Sandwich Panels</td>
+                <td>25 – 40+ dB</td>
+                <td>> 60 dB</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>3. Coexistence & Boundary Compliance Modeling</h2>
+    <p>Under PTS coexistence rules, a private 5G network operator must ensure that signal levels at adjacent property lines do not exceed permissible threshold values that could degrade neighboring networks.</p>
+
+    <div class="equation-box">
+        RSRP_boundary (dBm) = EIRP_tx (dBm) - FSPL(d) - Wall_Loss (dB)
+    </div>
+
+    <h2>4. Automated Compliance Verification</h2>
+    <p>To streamline PTS boundary verification for enterprise system integrators, an open-source evaluation engine was developed in Python by Radiometric Analytics. The engine integrates directly into GIS pipelines using SWEREF 99 TM (EPSG:3006) coordinates.</p>
+
+<pre><code>from pts_checker import PTSBoundaryChecker
+
+# Initialize engine for Swedish 3.7 GHz spectrum
+checker = PTSBoundaryChecker(freq_mhz=3750.0)
+
+# Evaluate a transmitter near an industrial site boundary (SWEREF 99 TM)
+result = checker.evaluate_boundary_point(
+    tx_x=150000.0, tx_y=6400000.0,
+    boundary_x=150120.0, boundary_y=6400000.0,
+    eirp_dbm=24.0,       # Indoor Small Cell EIRP
+    wall_loss_db=12.0    # Concrete/Glass envelope attenuation
+)
+
+print(f"Distance to Boundary:    {result['distance_m']} m")
+print(f"Calculated FSPL:         {result['fspl_db']} dB")
+print(f"Predicted Boundary RSRP: {result['rsrp_dbm']} dBm")
+</code></pre>
+
+    <h2>5. Conclusion & Recommendations</h2>
+    <ol>
+        <li><strong>Spectrum Selection Strategy:</strong> Use <strong>3.7 GHz</strong> as the primary connectivity layer for site-wide mobility and AGVs. Reserve <strong>26 GHz</strong> strictly for localized, line-of-sight high-bandwidth cells.</li>
+        <li><strong>Deterministic Modeling:</strong> Relying on default free-space calculations without factoring in wall losses and SWEREF 99 TM boundary distances leads to regulatory non-compliance.</li>
+        <li><strong>Automated Tooling:</strong> Incorporate automated boundary verification engines directly into RF survey dossiers to accelerate PTS approval workflows.</li>
+    </ol>
+
+    <div class="doc-footer">
+        Radiometric Analytics — Private 5G Spectrum Intelligence | Reference Repository: github.com/tomahaukka/pts-3.7ghz-boundary-checker
+    </div>
+
+</body>
+</html>
