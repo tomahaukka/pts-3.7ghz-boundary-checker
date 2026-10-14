@@ -1,8 +1,9 @@
 import math
+import argparse
 
 class PTSBoundaryChecker:
     """
-    Lightweight PTS Sweden 3.7 GHz Private 5G Boundary Compliance Engine.
+    Radiometric Analytics — Lightweight PTS Sweden 3.7 GHz Private 5G Boundary Compliance Engine.
     Calculates Worst-Case RSRP and FSPL at property boundaries (SWEREF 99 TM).
     """
     def __init__(self, freq_mhz=3750.0):
@@ -24,7 +25,17 @@ class PTSBoundaryChecker:
         }
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Radiometric PTS 3.7 GHz Boundary Compliance Engine")
+    parser.add_argument("--dist", type=float, default=120.0, help="Distance to boundary in meters")
+    parser.add_argument("--eirp", type=float, default=24.0, help="Transmitter EIRP in dBm")
+    parser.add_argument("--wall", type=float, default=12.0, help="Outer wall attenuation in dB")
+    args = parser.parse_args()
+
     checker = PTSBoundaryChecker(freq_mhz=3750.0)
-    # Example calculation: Transmitter at (X=150000, Y=6400000), Boundary at 120m distance
-    res = checker.evaluate_boundary_point(150000, 6400000, 150120, 6400000, eirp_dbm=24.0, wall_loss_db=12.0)
-    print(f"PTS Compliance Test Result: {res}")
+    res = checker.evaluate_boundary_point(0, 0, args.dist, 0, eirp_dbm=args.eirp, wall_loss_db=args.wall)
+    
+    print("\n--- Radiometric Private 5G Compliance Evaluation ---")
+    print(f"Target Distance:  {res['distance_m']} m")
+    print(f"Calculated FSPL:  {res['fspl_db']} dB")
+    print(f"Boundary RSRP:    {res['rsrp_dbm']} dBm")
+    print("----------------------------------------------------\n")
